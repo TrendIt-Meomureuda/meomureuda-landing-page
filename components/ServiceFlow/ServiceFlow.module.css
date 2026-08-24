@@ -1,0 +1,200 @@
+.section {
+  overflow: hidden;
+  background: var(--paper);
+}
+
+.heading {
+  display: grid;
+  grid-template-columns: 1fr 0.8fr;
+  align-items: end;
+  gap: 3rem;
+}
+
+.heading :global(.section-copy) {
+  margin-bottom: 0.5rem;
+}
+
+.route {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(1rem, 2.5vw, 2rem);
+  margin-top: 6rem;
+}
+
+.routeLine {
+  position: absolute;
+  top: 2rem;
+  right: 6%;
+  left: 6%;
+  height: 2px;
+  background: repeating-linear-gradient(90deg, var(--tangerine) 0 8px, transparent 8px 16px);
+}
+
+.step {
+  position: relative;
+  min-width: 0;
+}
+
+.screenWrap {
+  position: relative;
+  width: min(100%, 15.5rem);
+  margin: 0 auto;
+  overflow: hidden;
+  border: 6px solid var(--white);
+  border-radius: 1.75rem;
+  background: var(--white);
+  box-shadow: 0 18px 40px rgba(31, 52, 44, 0.16);
+}
+
+.step:nth-of-type(3) .screenWrap {
+  transform: rotate(1.5deg);
+}
+
+.step:nth-of-type(4) .screenWrap {
+  transform: rotate(-1.5deg);
+}
+
+.screenWrap img {
+  width: 100%;
+  height: auto;
+}
+
+.tape {
+  position: absolute;
+  top: -0.3rem;
+  left: 50%;
+  z-index: 2;
+  width: 4.8rem;
+  height: 1.2rem;
+  background: rgba(234, 219, 195, 0.88);
+  transform: translateX(-50%) rotate(-2deg);
+}
+
+.stepCopy {
+  margin-top: 1.6rem;
+}
+
+.stepMeta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.8rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.stepNumber {
+  color: var(--tangerine-dark);
+  font-family: var(--font-display), serif;
+  font-size: 1.65rem;
+  font-weight: 700;
+}
+
+.status {
+  padding: 0.28rem 0.58rem;
+  border-radius: 999px;
+  background: var(--paper-deep);
+  color: var(--forest-deep);
+  font-size: 0.68rem;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.status[data-status="핵심 기능"] {
+  background: var(--tangerine);
+  color: #26170b;
+}
+
+.status[data-status="개발 중"] {
+  background: var(--jeju-sea-pale);
+  color: #164f5d;
+}
+
+.status[data-status="후속 개발 예정"] {
+  background: #e8e7e2;
+  color: #525650;
+}
+
+.step h3 {
+  margin: 1rem 0 0;
+  color: var(--forest-deep);
+  font-family: var(--font-display), serif;
+  font-size: 1.45rem;
+  line-height: 1.35;
+  word-break: keep-all;
+}
+
+.step p {
+  margin: 0.65rem 0 0;
+  color: var(--muted);
+  font-size: 0.92rem;
+  line-height: 1.7;
+  word-break: keep-all;
+}
+
+.prototypeNote {
+  display: block;
+  margin-top: 0.65rem;
+  color: var(--tangerine-dark);
+  font-size: 0.68rem;
+  font-weight: 750;
+  line-height: 1.5;
+}
+
+@media (max-width: 70rem) {
+  .heading {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .route {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    row-gap: 4rem;
+  }
+
+  .routeLine {
+    display: none;
+  }
+
+  .screenWrap {
+    width: min(100%, 17rem);
+  }
+}
+
+@media (max-width: 47.99rem) {
+  .route {
+    grid-template-columns: 1fr;
+    margin-top: 3.5rem;
+  }
+
+  .step {
+    display: grid;
+    grid-template-columns: minmax(8rem, 0.78fr) 1.22fr;
+    align-items: center;
+    gap: 1.25rem;
+  }
+
+  .screenWrap {
+    width: 100%;
+    border-width: 4px;
+    border-radius: 1.2rem;
+  }
+
+  .stepCopy {
+    margin-top: 0;
+  }
+
+  .stepMeta {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .step h3 {
+    font-size: 1.2rem;
+  }
+
+  .step p {
+    font-size: 0.84rem;
+  }
+}

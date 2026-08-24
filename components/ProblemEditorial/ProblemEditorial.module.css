@@ -1,0 +1,164 @@
+.section {
+  background: var(--white);
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: minmax(0, 0.86fr) minmax(28rem, 1.14fr);
+  align-items: start;
+  gap: clamp(3rem, 8vw, 8rem);
+}
+
+.intro {
+  position: sticky;
+  top: 8rem;
+}
+
+.photoNote {
+  max-width: 28rem;
+  margin: 3.25rem 0 0;
+  transform: rotate(-1.5deg);
+}
+
+.photoCrop {
+  position: relative;
+  min-height: 17rem;
+  overflow: hidden;
+  border-radius: 0.4rem 5rem 0.4rem 0.4rem;
+}
+
+.photoCrop img {
+  object-fit: cover;
+}
+
+.photoNote figcaption {
+  margin-top: 0.85rem;
+  padding-left: 0.75rem;
+  border-left: 3px solid var(--tangerine);
+  color: var(--forest);
+  font-family: var(--font-display), serif;
+  font-size: 0.92rem;
+}
+
+.problems {
+  display: grid;
+  gap: 1.25rem;
+  padding-top: 4rem;
+}
+
+.problem {
+  position: relative;
+  display: grid;
+  min-height: 11.5rem;
+  grid-template-columns: 4rem 1fr;
+  align-items: start;
+  gap: 1.3rem;
+  padding: clamp(1.6rem, 4vw, 2.5rem);
+  border: 1px solid rgba(48, 51, 48, 0.13);
+}
+
+.problem:nth-child(even) {
+  margin-left: clamp(0rem, 5vw, 4rem);
+}
+
+.problem:nth-child(odd) {
+  margin-right: clamp(0rem, 4vw, 3rem);
+}
+
+.sand {
+  border-radius: 0.3rem 4.5rem 0.3rem 0.3rem;
+  background: var(--paper-deep);
+}
+
+.paper {
+  border-radius: 3.5rem 0.3rem 0.3rem 0.3rem;
+  background: var(--paper);
+  transform: rotate(0.8deg);
+}
+
+.sea {
+  border-radius: 0.3rem;
+  background: var(--jeju-sea-pale);
+  transform: rotate(-0.6deg);
+}
+
+.forest {
+  border-color: var(--forest);
+  border-radius: 0.3rem 0.3rem 4rem 0.3rem;
+  background: var(--forest);
+  color: var(--white);
+}
+
+.number {
+  color: var(--tangerine-dark);
+  font-family: var(--font-display), serif;
+  font-size: 2.1rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.forest .number {
+  color: #ffb56e;
+}
+
+.problem h3 {
+  margin: 0;
+  color: var(--forest-deep);
+  font-family: var(--font-display), serif;
+  font-size: clamp(1.35rem, 2vw, 1.8rem);
+  line-height: 1.35;
+  word-break: keep-all;
+}
+
+.forest h3 {
+  color: var(--white);
+}
+
+.problem p {
+  margin: 0.65rem 0 0;
+  color: #5b615c;
+  line-height: 1.7;
+  word-break: keep-all;
+}
+
+.forest p {
+  color: rgba(255, 253, 248, 0.78);
+}
+
+@media (max-width: 70rem) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+
+  .intro {
+    position: static;
+  }
+
+  .photoNote {
+    max-width: 38rem;
+  }
+
+  .problems {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    padding-top: 0;
+  }
+
+  .problem:nth-child(n) {
+    margin: 0;
+  }
+}
+
+@media (max-width: 47.99rem) {
+  .problems {
+    grid-template-columns: 1fr;
+  }
+
+  .problem {
+    min-height: auto;
+    grid-template-columns: 3.2rem 1fr;
+  }
+
+  .photoCrop {
+    min-height: 13.5rem;
+  }
+}

@@ -1,0 +1,120 @@
+.section {
+  background: var(--paper-deep);
+}
+
+.heading {
+  display: grid;
+  grid-template-columns: 1fr 0.8fr;
+  align-items: end;
+  gap: 3rem;
+}
+
+.models {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: 1rem;
+  margin-top: 5rem;
+}
+
+.models article {
+  position: relative;
+  min-height: 18rem;
+  padding: clamp(1.5rem, 3vw, 2.3rem);
+  border-top: 3px solid var(--tangerine);
+  background: var(--white);
+}
+
+.models article:nth-child(1) {
+  grid-column: span 4;
+  border-radius: 0.25rem 4rem 0.25rem 0.25rem;
+}
+
+.models article:nth-child(2) {
+  grid-column: span 3;
+  margin-top: 3rem;
+  border-color: var(--jeju-sea);
+  background: var(--jeju-sea-pale);
+}
+
+.models article:nth-child(3) {
+  grid-column: span 2;
+  min-height: 21rem;
+  margin-top: 1.2rem;
+  border-color: var(--coral);
+}
+
+.models article:nth-child(4) {
+  grid-column: span 3;
+  border-color: var(--forest);
+  border-radius: 0.25rem 0.25rem 3.5rem 0.25rem;
+  background: var(--forest);
+  color: var(--white);
+}
+
+.models span {
+  color: var(--tangerine-dark);
+  font-size: 0.68rem;
+  font-weight: 850;
+  letter-spacing: 0.1em;
+}
+
+.models article:nth-child(4) span {
+  color: #ffb26d;
+}
+
+.models h3 {
+  margin: 3.6rem 0 0;
+  color: var(--forest-deep);
+  font-family: var(--font-display), serif;
+  font-size: clamp(1.35rem, 2.2vw, 1.8rem);
+  line-height: 1.35;
+  word-break: keep-all;
+}
+
+.models article:nth-child(4) h3 {
+  color: var(--white);
+}
+
+.models p {
+  margin: 0.8rem 0 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+  line-height: 1.7;
+  word-break: keep-all;
+}
+
+.models article:nth-child(4) p {
+  color: rgba(255, 253, 248, 0.76);
+}
+
+@media (max-width: 70rem) {
+  .heading {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .models {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .models article:nth-child(n) {
+    grid-column: auto;
+    min-height: 16rem;
+    margin-top: 0;
+  }
+}
+
+@media (max-width: 47.99rem) {
+  .models {
+    grid-template-columns: 1fr;
+    margin-top: 3.5rem;
+  }
+
+  .models article:nth-child(n) {
+    min-height: auto;
+  }
+
+  .models h3 {
+    margin-top: 2rem;
+  }
+}

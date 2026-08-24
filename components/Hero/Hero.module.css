@@ -1,0 +1,295 @@
+.hero {
+  position: relative;
+  min-height: calc(100svh - 5.15rem);
+  overflow: hidden;
+  background: var(--paper);
+}
+
+.layout {
+  display: grid;
+  min-height: calc(100svh - 5.15rem);
+  grid-template-columns: minmax(0, 0.92fr) minmax(30rem, 1.08fr);
+  align-items: center;
+  gap: clamp(2rem, 5vw, 6rem);
+  padding-block: clamp(3.5rem, 7vw, 6.8rem);
+}
+
+.copy {
+  position: relative;
+  z-index: 2;
+}
+
+.badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+  margin-bottom: 2rem;
+}
+
+.badges span {
+  padding: 0.42rem 0.75rem;
+  border: 1px solid rgba(41, 72, 61, 0.25);
+  border-radius: 999px;
+  background: rgba(255, 253, 248, 0.65);
+  color: var(--forest);
+  font-size: 0.75rem;
+  font-weight: 750;
+}
+
+.badges span:last-child {
+  border-color: rgba(217, 101, 75, 0.3);
+  color: #9f3e2b;
+}
+
+.eyebrow {
+  margin: 0 0 0.75rem;
+  color: var(--tangerine-dark);
+  font-size: 0.72rem;
+  font-weight: 850;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.copy h1 {
+  margin: 0;
+  color: var(--forest-deep);
+  font-family: var(--font-display), serif;
+  font-size: clamp(3.2rem, 6.3vw, 6.6rem);
+  font-weight: 700;
+  letter-spacing: -0.065em;
+  line-height: 1.08;
+  word-break: keep-all;
+}
+
+.lead {
+  max-width: 36rem;
+  margin: 1.75rem 0 0;
+  color: #4d5650;
+  font-size: clamp(1.05rem, 1.65vw, 1.28rem);
+  line-height: 1.75;
+  word-break: keep-all;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 0.85rem;
+  margin-top: 2.15rem;
+}
+
+.actions > div {
+  max-width: 17.5rem;
+}
+
+.visual {
+  position: relative;
+  min-height: min(44rem, 72vh);
+}
+
+.photoFrame {
+  position: absolute;
+  inset: 7% 0 2% 12%;
+  overflow: hidden;
+  border: 9px solid var(--white);
+  border-radius: 47% 8% 42% 10% / 20% 11% 28% 12%;
+  box-shadow: var(--shadow);
+  transform: rotate(1.8deg);
+}
+
+.photoFrame img {
+  object-fit: cover;
+}
+
+.phoneFrame {
+  position: absolute;
+  right: -1.5rem;
+  bottom: 0;
+  z-index: 3;
+  width: clamp(11rem, 17vw, 14.5rem);
+  overflow: hidden;
+  border: 7px solid var(--white);
+  border-radius: 2rem;
+  box-shadow: 0 24px 54px rgba(28, 47, 40, 0.28);
+  transform: rotate(4deg);
+}
+
+.phoneFrame img {
+  width: 100%;
+  height: auto;
+}
+
+.character {
+  position: absolute;
+  bottom: 2.8rem;
+  left: 1rem;
+  z-index: 4;
+  width: clamp(6.8rem, 11vw, 9.5rem);
+  height: auto;
+  filter: drop-shadow(0 15px 14px rgba(38, 47, 41, 0.2));
+  transform: rotate(-7deg);
+}
+
+.stayMark {
+  position: absolute;
+  top: -2.2rem;
+  right: -7rem;
+  left: -2rem;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: auto minmax(4rem, 1fr) auto;
+  align-items: center;
+  color: rgba(143, 54, 0, 0.74);
+  font-family: var(--font-display), serif;
+  font-size: clamp(7rem, 15vw, 14rem);
+  font-weight: 700;
+  letter-spacing: -0.08em;
+  line-height: 0.9;
+  white-space: nowrap;
+}
+
+.stayMark i {
+  height: 0.12em;
+  margin-inline: 0.1em;
+  border-radius: 999px;
+  background: currentColor;
+  transform: rotate(-3deg);
+}
+
+.stayMark small {
+  position: absolute;
+  right: 1.5rem;
+  bottom: -1.1rem;
+  color: var(--forest);
+  font-family: var(--font-body), sans-serif;
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.postmark {
+  position: absolute;
+  top: 12%;
+  right: 2%;
+  z-index: 5;
+  display: grid;
+  width: 5rem;
+  aspect-ratio: 1;
+  place-items: center;
+  border: 2px solid rgba(217, 101, 75, 0.72);
+  border-radius: 50%;
+  color: #a43d2b;
+  font-size: 0.65rem;
+  font-weight: 850;
+  letter-spacing: 0.12em;
+  transform: rotate(9deg);
+}
+
+.postmark::after {
+  position: absolute;
+  width: 6rem;
+  height: 1.3rem;
+  border-block: 1px solid rgba(217, 101, 75, 0.5);
+  content: "";
+}
+
+.bottomLine {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 0.55rem;
+  background: repeating-linear-gradient(90deg, var(--tangerine) 0 3.5rem, var(--coral) 3.5rem 5rem, var(--forest) 5rem 8rem, var(--jeju-sea) 8rem 11rem);
+}
+
+@media (max-width: 70rem) {
+  .hero,
+  .layout {
+    min-height: auto;
+  }
+
+  .layout {
+    grid-template-columns: 1fr;
+    padding-block: 4.5rem 6rem;
+  }
+
+  .copy {
+    max-width: 50rem;
+  }
+
+  .visual {
+    min-height: 40rem;
+  }
+
+  .phoneFrame {
+    right: 5%;
+  }
+}
+
+@media (max-width: 47.99rem) {
+  .layout {
+    gap: 2.4rem;
+    padding-block: 3.2rem 4.8rem;
+  }
+
+  .badges {
+    margin-bottom: 1.5rem;
+  }
+
+  .copy h1 {
+    font-size: clamp(2.65rem, 13vw, 4rem);
+    letter-spacing: -0.055em;
+  }
+
+  .actions {
+    display: grid;
+    align-items: stretch;
+  }
+
+  .actions > a,
+  .actions > div,
+  .actions > div > a {
+    width: 100%;
+    max-width: none;
+  }
+
+  .visual {
+    min-height: 31rem;
+  }
+
+  .photoFrame {
+    inset: 12% 2% 3% 0;
+    border-width: 6px;
+  }
+
+  .phoneFrame {
+    right: -0.4rem;
+    width: 42%;
+    border-width: 5px;
+    border-radius: 1.5rem;
+  }
+
+  .character {
+    bottom: 1.6rem;
+    left: -0.5rem;
+    width: 7rem;
+  }
+
+  .stayMark {
+    top: 0;
+    right: 0;
+    left: 0;
+    font-size: 5.7rem;
+  }
+
+  .stayMark small {
+    right: 0;
+  }
+
+  .postmark {
+    top: 18%;
+    right: 0;
+    width: 4.25rem;
+  }
+}

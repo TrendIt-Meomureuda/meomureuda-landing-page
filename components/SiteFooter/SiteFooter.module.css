@@ -1,0 +1,66 @@
+.footer {
+  padding-block: 3rem 2rem;
+  background: var(--forest-deep);
+  color: var(--white);
+}
+
+.top,
+.bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: 0.2rem;
+}
+
+.brand span {
+  align-self: center;
+  margin-left: 0.7rem;
+  color: rgba(255, 253, 248, 0.54);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.top address {
+  display: flex;
+  gap: 1.5rem;
+  font-size: 0.84rem;
+  font-style: normal;
+}
+
+.bottom {
+  align-items: flex-start;
+  margin-top: 2.3rem;
+  padding-top: 1.3rem;
+  border-top: 1px solid rgba(255, 253, 248, 0.18);
+  color: rgba(255, 253, 248, 0.58);
+  font-size: 0.72rem;
+}
+
+.bottom p {
+  max-width: 52rem;
+  margin: 0;
+}
+
+@media (max-width: 47.99rem) {
+  .top,
+  .bottom,
+  .top address {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .top address {
+    gap: 0.5rem;
+  }
+
+  .bottom {
+    gap: 0.7rem;
+  }
+}

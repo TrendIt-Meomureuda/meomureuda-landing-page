@@ -1,0 +1,160 @@
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  border-bottom: 1px solid var(--line);
+  background: rgba(247, 241, 229, 0.97);
+}
+
+.inner {
+  display: flex;
+  min-height: 5.15rem;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.brand {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: flex-start;
+  gap: 0.15rem;
+  text-decoration: none;
+}
+
+.desktopNav {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(0.9rem, 2vw, 1.7rem);
+}
+
+.desktopNav a {
+  position: relative;
+  color: var(--forest-deep);
+  font-size: 0.86rem;
+  font-weight: 700;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.desktopNav a::after {
+  position: absolute;
+  right: 0;
+  bottom: -0.45rem;
+  left: 0;
+  height: 2px;
+  background: var(--tangerine);
+  content: "";
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 160ms ease;
+}
+
+.desktopNav a:hover::after {
+  transform: scaleX(1);
+}
+
+.figmaLink {
+  min-height: 2.7rem;
+  padding: 0.65rem 1rem;
+  font-size: 0.82rem;
+  white-space: nowrap;
+}
+
+.menuButton,
+.mobileNav {
+  display: none;
+}
+
+@media (max-width: 70rem) {
+  .inner {
+    min-height: 4.75rem;
+  }
+
+  .desktopNav,
+  .figmaLink {
+    display: none;
+  }
+
+  .brand {
+    margin-right: auto;
+  }
+
+  .menuButton {
+    display: inline-flex;
+    min-width: 4.8rem;
+    min-height: 2.75rem;
+    align-items: center;
+    justify-content: center;
+    gap: 0.55rem;
+    border: 1px solid rgba(41, 72, 61, 0.4);
+    border-radius: 999px;
+    background: var(--white);
+    color: var(--forest-deep);
+    font-size: 0.82rem;
+    font-weight: 800;
+    cursor: pointer;
+  }
+
+  .menuIcon {
+    position: relative;
+    width: 1rem;
+    height: 1px;
+    background: currentColor;
+  }
+
+  .menuIcon::before,
+  .menuIcon::after {
+    position: absolute;
+    left: 0;
+    width: 1rem;
+    height: 1px;
+    background: currentColor;
+    content: "";
+  }
+
+  .menuIcon::before {
+    top: -0.3rem;
+  }
+
+  .menuIcon::after {
+    top: 0.3rem;
+  }
+
+  .mobileNav {
+    display: block;
+    border-top: 1px solid var(--line);
+    background: var(--paper);
+    box-shadow: 0 22px 34px rgba(32, 48, 42, 0.12);
+  }
+
+  .mobileNav > div {
+    display: grid;
+    padding-block: 0.65rem 1.2rem;
+  }
+
+  .mobileNav a {
+    padding: 0.78rem 0;
+    border-bottom: 1px solid var(--line);
+    color: var(--forest-deep);
+    font-weight: 750;
+    text-decoration: none;
+  }
+
+  .mobileNav .mobileFigma {
+    margin-top: 0.65rem;
+    padding: 0.9rem 1rem;
+    border: 1px solid var(--forest);
+    border-radius: 0.9rem 0.9rem 0.9rem 0.25rem;
+    background: var(--white);
+  }
+
+  .mobileFigma small {
+    display: block;
+    margin-top: 0.2rem;
+    color: var(--muted);
+    font-size: 0.72rem;
+    font-weight: 500;
+  }
+}
