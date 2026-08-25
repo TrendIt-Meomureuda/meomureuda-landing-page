@@ -3,7 +3,7 @@ export type Locale = "ko" | "en";
 const shared = {
   language: {
     korean: "한국어",
-    english: "EN",
+    english: "English",
   },
   stayRange: "28–60",
 };
@@ -19,9 +19,6 @@ export const localizedContent = {
       languageLabel: "언어 선택",
       menu: "메뉴",
       close: "닫기",
-      figmaLabel: "Figma 프로토타입 보기 ↗",
-      figmaAria: "별도 Figma 프로토타입 보기, 새 탭에서 외부 Figma 파일 열림",
-      figmaNote: "새 탭에서 외부 Figma 파일이 열립니다.",
       navigation: [
         { href: "#service", label: "서비스 소개" },
         { href: "#flow", label: "이용 흐름" },
@@ -168,9 +165,6 @@ export const localizedContent = {
       languageLabel: "Choose language",
       menu: "Menu",
       close: "Close",
-      figmaLabel: "View Figma prototype ↗",
-      figmaAria: "View the separate Figma prototype; opens an external Figma file in a new tab",
-      figmaNote: "Opens an external Figma file in a new tab.",
       navigation: [
         { href: "#service", label: "Why it matters" },
         { href: "#flow", label: "How it works" },

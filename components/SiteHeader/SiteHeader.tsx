@@ -5,7 +5,6 @@ import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 
 import type { Locale, SiteContent } from "@/data/localizedContent";
-import { FIGMA_PROTOTYPE_URL } from "@/data/siteContent";
 
 import styles from "./SiteHeader.module.css";
 
@@ -66,16 +65,6 @@ export function SiteHeader({ content, language, locale }: SiteHeaderProps) {
           </Link>
         </nav>
 
-        <a
-          className={`${styles.figmaLink} button-secondary`}
-          href={FIGMA_PROTOTYPE_URL}
-          target="_blank"
-          rel="noreferrer"
-          aria-label={content.figmaAria}
-        >
-          {content.figmaLabel}
-        </a>
-
         <button
           ref={menuButtonRef}
           className={styles.menuButton}
@@ -102,16 +91,6 @@ export function SiteHeader({ content, language, locale }: SiteHeaderProps) {
                 {item.label}
               </a>
             ))}
-            <a
-              className={styles.mobileFigma}
-              href={FIGMA_PROTOTYPE_URL}
-              target="_blank"
-              rel="noreferrer"
-              onClick={closeMenu}
-            >
-              {content.figmaLabel}
-              <small>{content.figmaNote}</small>
-            </a>
           </div>
         </nav>
       ) : null}

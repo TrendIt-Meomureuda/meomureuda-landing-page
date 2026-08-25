@@ -57,44 +57,47 @@
 .languageSwitcher {
   display: inline-flex;
   flex: 0 0 auto;
-  gap: 0.15rem;
-  padding: 0.2rem;
-  border: 1px solid var(--line);
+  align-items: center;
+  gap: 0.12rem;
+  padding: 0.25rem;
+  border: 1px solid #f2d8bd;
   border-radius: 999px;
-  background: var(--gray-50);
+  background: var(--orange-soft);
+  box-shadow: 0 4px 14px rgba(175, 108, 45, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.82);
 }
 
 .languageSwitcher a {
-  min-width: 2.25rem;
-  padding: 0.34rem 0.58rem;
+  min-width: 2.7rem;
+  padding: 0.48rem 0.68rem;
   border-radius: 999px;
-  color: var(--gray-300);
-  font-size: 0.67rem;
+  color: #94775e;
+  font-size: 0.69rem;
   font-weight: 700;
   line-height: 1;
   text-align: center;
   text-decoration: none;
+  transition: background-color 160ms ease, box-shadow 160ms ease, color 160ms ease, transform 160ms ease;
   white-space: nowrap;
+}
+
+.languageSwitcher a:hover {
+  background: rgba(255, 255, 255, 0.68);
+  color: var(--tangerine-dark);
 }
 
 .languageSwitcher a[aria-current="page"] {
-  background: var(--white);
-  box-shadow: 0 1px 4px rgba(37, 39, 41, 0.09);
-  color: var(--tangerine);
+  background: var(--tangerine);
+  box-shadow: 0 3px 8px rgba(185, 87, 11, 0.2);
+  color: var(--white);
 }
 
-.figmaLink {
-  min-height: 2.5rem;
-  padding: 0.55rem 0.95rem;
-  font-size: 0.74rem;
-  white-space: nowrap;
-}
+.languageSwitcher a[aria-current="page"]:hover { color: var(--white); transform: translateY(-1px); }
 
 .menuButton, .mobileNav { display: none; }
 
 @media (max-width: 70rem) {
   .inner { min-height: 4.4rem; }
-  .desktopNav, .figmaLink { display: none; }
+  .desktopNav { display: none; }
   .brand { margin-right: auto; }
   .languageSwitcher { margin-left: auto; }
 
@@ -149,30 +152,13 @@
     font-weight: 650;
     text-decoration: none;
   }
-
-  .mobileNav .mobileFigma {
-    margin-top: 0.7rem;
-    padding: 0.9rem 1rem;
-    border: 0;
-    border-radius: 12px;
-    background: var(--orange-pale);
-    color: #af8760;
-  }
-
-  .mobileFigma small {
-    display: block;
-    margin-top: 0.2rem;
-    color: #b6906b;
-    font-size: 0.7rem;
-    font-weight: 500;
-  }
 }
 
 @media (max-width: 25rem) {
   .inner { gap: 0.55rem; }
   .brand { margin-right: auto; }
   .brand img:last-child { width: 96px; height: auto; }
-  .languageSwitcher a { min-width: 1.95rem; padding-inline: 0.42rem; }
+  .languageSwitcher a { min-width: 1.95rem; padding-inline: 0.48rem; }
   .menuButton { min-width: 2.65rem; padding-inline: 0.75rem; }
   .menuLabel { display: none; }
 }

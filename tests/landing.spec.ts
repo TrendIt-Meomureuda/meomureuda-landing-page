@@ -24,6 +24,7 @@ test("Figma 링크를 실제 서비스가 아닌 별도 프로토타입으로 �
   const figmaLinks = page.getByRole("link", { name: /Figma 프로토타입 보기/ });
   await expect(figmaLinks.first()).toHaveAttribute("href", FIGMA_PROTOTYPE_URL);
   await expect(figmaLinks.first()).toHaveAttribute("target", "_blank");
+  await expect(page.locator("header").getByRole("link", { name: /Figma/ })).toHaveCount(0);
   await expect(page.getByText("실제 서비스가 아닌 디자인 검토용", { exact: false }).first()).toBeVisible();
   await expect(page.getByRole("link", { name: /서비스 미리보기/ })).toHaveCount(0);
 });
@@ -55,8 +56,8 @@ test("언어 선택으로 자연스러운 영어 버전을 제공한다", async 
   await page.goto("/");
 
   const languageNavigation = page.getByRole("navigation", { name: "언어 선택" });
-  await expect(languageNavigation.getByRole("link", { name: "EN" })).toHaveAttribute("href", "/en");
-  await languageNavigation.getByRole("link", { name: "EN" }).click();
+  await expect(languageNavigation.getByRole("link", { name: "English" })).toHaveAttribute("href", "/en");
+  await languageNavigation.getByRole("link", { name: "English" }).click();
 
   await expect(page).toHaveURL(/\/en$/);
   await expect(page.locator("html")).toHaveAttribute("lang", "en");
