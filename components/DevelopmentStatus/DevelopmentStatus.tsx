@@ -1,39 +1,43 @@
-import { formatCompactKoreanDate, formatKoreanDeadline } from "@/data/dateFormatting";
-import { developmentStatus, PILOT_TARGET_DATE, SUBMISSION_DATE } from "@/data/siteContent";
+import { formatCompactDate, formatDeadline } from "@/data/dateFormatting";
+import type { Locale, SiteContent } from "@/data/localizedContent";
+import { PILOT_TARGET_DATE, SUBMISSION_DATE } from "@/data/siteContent";
 
 import { StatusRow } from "./StatusRow";
 import styles from "./DevelopmentStatus.module.css";
 
-export function DevelopmentStatus() {
+type DevelopmentStatusProps = {
+  content: SiteContent["status"];
+  locale: Locale;
+};
+
+export function DevelopmentStatus({ content, locale }: DevelopmentStatusProps) {
   return (
     <section id="status" className={`section-shell deferred-section ${styles.section}`} aria-labelledby="status-title">
       <div className={`site-container ${styles.layout}`}>
         <div>
-          <p className="section-kicker">개발 현황</p>
-          <h2 id="status-title" className="section-title">완료된 것과<br />앞으로 만들 것을<br />구분합니다.</h2>
-          <p className="section-copy">
-            프로토타입의 화면 수가 개발 완료 범위를 의미하지 않도록, 현재 상태를 기능 단위로 공개합니다.
-          </p>
+          <p className="section-kicker">{content.kicker}</p>
+          <h2 id="status-title" className="section-title">{content.title[0]}<br />{content.title[1]}<br />{content.title[2]}</h2>
+          <p className="section-copy">{content.copy}</p>
           <div className={styles.dates}>
             <div>
-              <span>시범 서비스 목표</span>
-              <time dateTime={PILOT_TARGET_DATE}>{formatCompactKoreanDate(PILOT_TARGET_DATE)}</time>
+              <span>{content.pilotLabel}</span>
+              <time dateTime={PILOT_TARGET_DATE}>{formatCompactDate(PILOT_TARGET_DATE, locale)}</time>
             </div>
             <div>
-              <span>공모전 제출 예정</span>
-              <time dateTime={SUBMISSION_DATE}>{formatKoreanDeadline(SUBMISSION_DATE)}</time>
+              <span>{content.submissionLabel}</span>
+              <time dateTime={SUBMISSION_DATE}>{formatDeadline(SUBMISSION_DATE, locale)}</time>
             </div>
           </div>
         </div>
 
-        <ul className={styles.list} aria-label="기능별 개발 현황">
-          <StatusRow {...developmentStatus[0]} />
-          <StatusRow {...developmentStatus[1]} />
-          <StatusRow {...developmentStatus[2]} />
-          <StatusRow {...developmentStatus[3]} />
-          <StatusRow {...developmentStatus[4]} />
-          <StatusRow {...developmentStatus[5]} />
-          <StatusRow {...developmentStatus[6]} />
+        <ul className={styles.list} aria-label={content.listAria}>
+          <StatusRow {...content.rows[0]} />
+          <StatusRow {...content.rows[1]} />
+          <StatusRow {...content.rows[2]} />
+          <StatusRow {...content.rows[3]} />
+          <StatusRow {...content.rows[4]} />
+          <StatusRow {...content.rows[5]} />
+          <StatusRow {...content.rows[6]} />
         </ul>
       </div>
     </section>

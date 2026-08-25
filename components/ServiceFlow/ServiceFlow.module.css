@@ -56,8 +56,8 @@
   white-space: nowrap;
 }
 
-.status[data-status="핵심 기능"] { background: var(--orange-pale); color: var(--tangerine); }
-.status[data-status="개발 중"] { background: var(--orange-soft); color: #af8760; }
+.status[data-status="primary"] { background: var(--orange-pale); color: var(--tangerine); }
+.status[data-status="progress"] { background: var(--orange-soft); color: #af8760; }
 
 .step h3 {
   margin: 0.9rem 0 0;

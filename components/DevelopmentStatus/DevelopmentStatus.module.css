@@ -44,10 +44,10 @@
 }
 
 .status i { display: grid; width: 1.5rem; aspect-ratio: 1; place-items: center; border-radius: 50%; background: var(--gray-50); font-style: normal; }
-.status[data-status="완료"] { color: #6c8f35; }
-.status[data-status="개발 중"] { color: var(--tangerine); }
-.status[data-status="검토·문의"] { color: #af8760; }
-.status[data-status="후속 예정"] { color: var(--gray-300); }
+.status[data-status="complete"] { color: #6c8f35; }
+.status[data-status="progress"] { color: var(--tangerine); }
+.status[data-status="review"] { color: #af8760; }
+.status[data-status="planned"] { color: var(--gray-300); }
 
 @media (max-width: 70rem) { .layout { grid-template-columns: 1fr; } }
 

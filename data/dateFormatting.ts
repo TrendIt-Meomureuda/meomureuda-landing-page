@@ -1,35 +1,30 @@
-const KOREAN_DATE = new Intl.DateTimeFormat("ko-KR", {
-  year: "numeric",
-  month: "long",
-  day: "numeric",
-  timeZone: "Asia/Seoul",
-});
+import type { Locale } from "./localizedContent";
 
-const COMPACT_KOREAN_DATE = new Intl.DateTimeFormat("ko-KR", {
-  year: "numeric",
-  month: "2-digit",
-  day: "2-digit",
-  timeZone: "Asia/Seoul",
-});
+const localeNames: Record<Locale, string> = {
+  ko: "ko-KR",
+  en: "en-US",
+};
 
-const KOREAN_DEADLINE = new Intl.DateTimeFormat("ko-KR", {
-  year: "numeric",
-  month: "long",
-  day: "numeric",
-  hour: "2-digit",
-  minute: "2-digit",
-  hourCycle: "h23",
-  timeZone: "Asia/Seoul",
-});
-
-export function formatKoreanDate(isoDate: string) {
-  return KOREAN_DATE.format(new Date(isoDate));
+function createFormatter(locale: Locale, includeTime = false, compact = false) {
+  return new Intl.DateTimeFormat(localeNames[locale], {
+    year: "numeric",
+    month: compact ? "2-digit" : "long",
+    day: "numeric",
+    hour: includeTime ? "2-digit" : undefined,
+    minute: includeTime ? "2-digit" : undefined,
+    hourCycle: includeTime ? "h23" : undefined,
+    timeZone: "Asia/Seoul",
+  });
 }
 
-export function formatCompactKoreanDate(isoDate: string) {
-  return COMPACT_KOREAN_DATE.format(new Date(isoDate));
+export function formatDate(isoDate: string, locale: Locale) {
+  return createFormatter(locale).format(new Date(isoDate));
 }
 
-export function formatKoreanDeadline(isoDate: string) {
-  return KOREAN_DEADLINE.format(new Date(isoDate));
+export function formatCompactDate(isoDate: string, locale: Locale) {
+  return createFormatter(locale, false, true).format(new Date(isoDate));
+}
+
+export function formatDeadline(isoDate: string, locale: Locale) {
+  return createFormatter(locale, true).format(new Date(isoDate));
 }

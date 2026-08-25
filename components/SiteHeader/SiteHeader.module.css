@@ -54,6 +54,35 @@
 
 .desktopNav a:hover::after { transform: scaleX(1); }
 
+.languageSwitcher {
+  display: inline-flex;
+  flex: 0 0 auto;
+  gap: 0.15rem;
+  padding: 0.2rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--gray-50);
+}
+
+.languageSwitcher a {
+  min-width: 2.25rem;
+  padding: 0.34rem 0.58rem;
+  border-radius: 999px;
+  color: var(--gray-300);
+  font-size: 0.67rem;
+  font-weight: 700;
+  line-height: 1;
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.languageSwitcher a[aria-current="page"] {
+  background: var(--white);
+  box-shadow: 0 1px 4px rgba(37, 39, 41, 0.09);
+  color: var(--tangerine);
+}
+
 .figmaLink {
   min-height: 2.5rem;
   padding: 0.55rem 0.95rem;
@@ -67,6 +96,7 @@
   .inner { min-height: 4.4rem; }
   .desktopNav, .figmaLink { display: none; }
   .brand { margin-right: auto; }
+  .languageSwitcher { margin-left: auto; }
 
   .menuButton {
     display: inline-flex;
@@ -136,4 +166,13 @@
     font-size: 0.7rem;
     font-weight: 500;
   }
+}
+
+@media (max-width: 25rem) {
+  .inner { gap: 0.55rem; }
+  .brand { margin-right: auto; }
+  .brand img:last-child { width: 96px; height: auto; }
+  .languageSwitcher a { min-width: 1.95rem; padding-inline: 0.42rem; }
+  .menuButton { min-width: 2.65rem; padding-inline: 0.75rem; }
+  .menuLabel { display: none; }
 }

@@ -82,6 +82,13 @@ section[id] { scroll-margin-top: 4.75rem; }
 h1, h2, h3 { text-wrap: balance; }
 p { text-wrap: pretty; }
 
+html[lang="en"] .section-title,
+html[lang="en"] .section-copy {
+  word-break: normal;
+}
+
+html[lang="en"] .section-title { max-width: 17ch; }
+
 :focus-visible {
   outline: 3px solid var(--tangerine);
   outline-offset: 3px;

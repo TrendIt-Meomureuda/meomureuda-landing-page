@@ -1,32 +1,39 @@
 import Image from "next/image";
 
+import type { Locale, SiteContent } from "@/data/localizedContent";
 import {
-  CONTACT_EMAIL_HREF,
+  CONTACT_EMAIL_HREF_EN,
+  CONTACT_EMAIL_HREF_KO,
   FIGMA_PROTOTYPE_URL,
 } from "@/data/siteContent";
 
 import styles from "./Hero.module.css";
 
-export function Hero() {
+type HeroProps = {
+  content: SiteContent["hero"];
+  locale: Locale;
+};
+
+export function Hero({ content, locale }: HeroProps) {
+  const contactHref = locale === "ko" ? CONTACT_EMAIL_HREF_KO : CONTACT_EMAIL_HREF_EN;
+
   return (
     <section id="top" className={styles.hero} aria-labelledby="hero-title">
       <div className={`site-container ${styles.layout}`}>
         <div className={styles.copy}>
-          <div className={styles.badges} aria-label="서비스 범위와 프로젝트 정보">
-            <span>제주 장기 체류 숙소 추천</span>
-            <span>2026 관광데이터 활용 공모전 출품</span>
+          <div className={styles.badges} aria-label={content.badgesAria}>
+            <span>{content.badges[0]}</span>
+            <span>{content.badges[1]}</span>
           </div>
-          <p className={styles.eyebrow}>제주 장기 체류 추천</p>
+          <p className={styles.eyebrow}>{content.eyebrow}</p>
           <h1 id="hero-title">
-            <span>나에게 맞는 제주에서,</span>
-            <span className={styles.titleAccent}>한 달을 살아보다</span>
+            <span>{content.title[0]}</span>
+            <span className={styles.titleAccent}>{content.title[1]}</span>
           </h1>
-          <p className={styles.lead}>
-            여행 성향 진단을 통해 나에게 맞는 제주 권역과 장기 체류 숙소를 추천하는 제주 한달살이 서비스입니다.
-          </p>
+          <p className={styles.lead}>{content.lead}</p>
           <div className={styles.actions}>
-            <a className="button-primary" href={CONTACT_EMAIL_HREF}>
-              제휴 및 데이터 연동 문의
+            <a className="button-primary" href={contactHref}>
+              {content.contactCta}
             </a>
             <div>
               <a
@@ -34,41 +41,41 @@ export function Hero() {
                 href={FIGMA_PROTOTYPE_URL}
                 target="_blank"
                 rel="noreferrer"
-                aria-label="별도 Figma 프로토타입 보기, 새 탭에서 외부 Figma 파일 열림"
+                aria-label={content.figmaAria}
               >
-                별도 Figma 프로토타입 보기 ↗
+                {content.figmaLabel}
               </a>
-              <small className="external-note">실제 서비스가 아닌 디자인 검토용 Figma 파일입니다.</small>
+              <small className="external-note">{content.figmaNote}</small>
             </div>
           </div>
         </div>
 
-        <aside className={styles.servicePreview} aria-label="머무르다 추천 흐름 프로토타입 예시">
+        <aside className={styles.servicePreview} aria-label={content.previewAria}>
           <div className={styles.previewIntro}>
-            <small>서비스 추천 흐름 예시</small>
-            <strong>성향에서 머무름까지</strong>
-            <span>진단부터 장기 체류 조건까지</span>
+            <small>{content.previewIntro[0]}</small>
+            <strong>{content.previewIntro[1]}</strong>
+            <span>{content.previewIntro[2]}</span>
           </div>
           <ol className={styles.previewSteps}>
             <li>
-              <span>여행 성향 진단</span>
-              <strong>감성 충전가형</strong>
+              <span>{content.previewSteps[0][0]}</span>
+              <strong>{content.previewSteps[0][1]}</strong>
             </li>
             <li>
-              <span>제주 권역 추천</span>
-              <strong>제주 서귀포시</strong>
+              <span>{content.previewSteps[1][0]}</span>
+              <strong>{content.previewSteps[1][1]}</strong>
             </li>
             <li>
-              <span>장기 체류 조건</span>
-              <strong>28–60박</strong>
+              <span>{content.previewSteps[2][0]}</span>
+              <strong>{content.previewSteps[2][1]}</strong>
             </li>
           </ol>
-          <p className={styles.previewNote}>프로토타입 예시 화면 · 실제 추천 결과는 진단과 연동 데이터에 따라 달라집니다.</p>
+          <p className={styles.previewNote}>{content.previewNote}</p>
         </aside>
 
-        <div className={styles.visual} aria-label="제주 바다와 머무르다 앱 화면 콜라주">
-          <div className={styles.stayRange} aria-label="제주 장기 체류 추천 기간, 28박에서 60박">
-            <span className={styles.rangeTitle}>제주에서 머무는 시간</span>
+        <div className={styles.visual} aria-label={content.visualAria}>
+          <div className={styles.stayRange} aria-label={content.rangeAria}>
+            <span className={styles.rangeTitle}>{content.rangeTitle}</span>
             <div className={styles.rangeNumbers}>
               <strong>28</strong>
               <span aria-hidden="true">—</span>
@@ -78,7 +85,7 @@ export function Hero() {
           <div className={styles.photoFrame}>
             <Image
               src="/photos/jeju-sea.jpg"
-              alt="현무암 해안 너머로 맑은 제주 바다가 펼쳐진 모습"
+              alt={content.photoAlt}
               fill
               loading="eager"
               fetchPriority="high"
@@ -88,7 +95,7 @@ export function Hero() {
           <div className={styles.phoneFrame}>
             <Image
               src="/figma/home.png"
-              alt="여행 성향과 제주 권역을 추천하는 머무르다 홈 화면"
+              alt={content.phoneAlt}
               width={390}
               height={973}
               sizes="(max-width: 768px) 42vw, 230px"
@@ -97,7 +104,7 @@ export function Hero() {
           <Image
             className={styles.character}
             src="/brand/character-body.svg"
-            alt="새싹이 돋은 머무르다 캐릭터"
+            alt={content.characterAlt}
             width={158}
             height={188}
           />

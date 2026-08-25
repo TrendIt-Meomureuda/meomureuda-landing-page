@@ -1,13 +1,21 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 
-import { FIGMA_PROTOTYPE_URL, navigation } from "@/data/siteContent";
+import type { Locale, SiteContent } from "@/data/localizedContent";
+import { FIGMA_PROTOTYPE_URL } from "@/data/siteContent";
 
 import styles from "./SiteHeader.module.css";
 
-export function SiteHeader() {
+type SiteHeaderProps = {
+  content: SiteContent["header"];
+  language: SiteContent["language"];
+  locale: Locale;
+};
+
+export function SiteHeader({ content, language, locale }: SiteHeaderProps) {
   const [isOpen, setIsOpen] = useState(false);
   const menuButtonRef = useRef<HTMLButtonElement>(null);
   const firstLinkRef = useRef<HTMLAnchorElement>(null);
@@ -36,17 +44,26 @@ export function SiteHeader() {
   return (
     <header className={styles.header}>
       <div className={`site-container ${styles.inner}`}>
-        <a className={styles.brand} href="#top" aria-label="머무르다 페이지 처음으로">
+        <a className={styles.brand} href="#top" aria-label={content.brandLabel}>
           <Image src="/brand/logo-sprout.svg" alt="" width={22} height={16} aria-hidden="true" />
-          <Image src="/brand/logo-wordmark.svg" alt="머무르다" width={112} height={29} priority />
+          <Image src="/brand/logo-wordmark.svg" alt="Meomureuda" width={112} height={29} priority />
         </a>
 
-        <nav className={styles.desktopNav} aria-label="주요 메뉴">
-          {navigation.map((item) => (
+        <nav className={styles.desktopNav} aria-label={content.navLabel}>
+          {content.navigation.map((item) => (
             <a key={item.href} href={item.href}>
               {item.label}
             </a>
           ))}
+        </nav>
+
+        <nav className={styles.languageSwitcher} aria-label={content.languageLabel}>
+          <Link href="/" lang="ko" aria-current={locale === "ko" ? "page" : undefined}>
+            {language.korean}
+          </Link>
+          <Link href="/en" lang="en" aria-current={locale === "en" ? "page" : undefined}>
+            {language.english}
+          </Link>
         </nav>
 
         <a
@@ -54,9 +71,9 @@ export function SiteHeader() {
           href={FIGMA_PROTOTYPE_URL}
           target="_blank"
           rel="noreferrer"
-          aria-label="별도 Figma 프로토타입 보기, 새 탭에서 외부 Figma 파일 열림"
+          aria-label={content.figmaAria}
         >
-          Figma 프로토타입 보기 ↗
+          {content.figmaLabel}
         </a>
 
         <button
@@ -68,14 +85,14 @@ export function SiteHeader() {
           onClick={toggleMenu}
         >
           <span className={styles.menuIcon} aria-hidden="true" />
-          <span>{isOpen ? "닫기" : "메뉴"}</span>
+          <span className={styles.menuLabel}>{isOpen ? content.close : content.menu}</span>
         </button>
       </div>
 
       {isOpen ? (
-        <nav id="mobile-navigation" className={styles.mobileNav} aria-label="모바일 주요 메뉴">
+        <nav id="mobile-navigation" className={styles.mobileNav} aria-label={content.mobileNavLabel}>
           <div className="site-container">
-            {navigation.map((item, index) => (
+            {content.navigation.map((item, index) => (
               <a
                 key={item.href}
                 ref={index === 0 ? firstLinkRef : undefined}
@@ -92,8 +109,8 @@ export function SiteHeader() {
               rel="noreferrer"
               onClick={closeMenu}
             >
-              별도 Figma 프로토타입 보기 ↗
-              <small>새 탭에서 외부 Figma 파일이 열립니다.</small>
+              {content.figmaLabel}
+              <small>{content.figmaNote}</small>
             </a>
           </div>
         </nav>

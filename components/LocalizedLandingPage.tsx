@@ -8,8 +8,11 @@ import { ProjectInfo } from "@/components/ProjectInfo/ProjectInfo";
 import { ServiceFlow } from "@/components/ServiceFlow/ServiceFlow";
 import { SiteFooter } from "@/components/SiteFooter/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader/SiteHeader";
+import { getSiteContent, type Locale } from "@/data/localizedContent";
 
-export default function HomePage() {
+export function LocalizedLandingPage({ locale }: { locale: Locale }) {
+  const content = getSiteContent(locale);
+  const isKorean = locale === "ko";
   const structuredData = {
     "@context": "https://schema.org",
     "@graph": [
@@ -21,28 +24,30 @@ export default function HomePage() {
       },
       {
         "@type": "WebSite",
-        name: "머무르다",
-        url: "https://meomureuda-partners.vercel.app",
-        inLanguage: "ko-KR",
+        name: isKorean ? "머무르다" : "Meomureuda",
+        url: isKorean
+          ? "https://meomureuda-partners.vercel.app"
+          : "https://meomureuda-partners.vercel.app/en",
+        inLanguage: isKorean ? "ko-KR" : "en-US",
       },
     ],
   };
 
   return (
     <>
-      <a className="skip-link" href="#main-content">본문으로 바로가기</a>
-      <SiteHeader />
+      <a className="skip-link" href="#main-content">{content.skipLink}</a>
+      <SiteHeader content={content.header} language={content.language} locale={locale} />
       <main id="main-content">
-        <Hero />
-        <ProblemEditorial />
-        <ServiceFlow />
-        <DataIntegration />
-        <DevelopmentStatus />
-        <BusinessModel />
-        <ProjectInfo />
-        <Contact />
+        <Hero content={content.hero} locale={locale} />
+        <ProblemEditorial content={content.problem} />
+        <ServiceFlow content={content.flow} />
+        <DataIntegration content={content.data} />
+        <DevelopmentStatus content={content.status} locale={locale} />
+        <BusinessModel content={content.business} />
+        <ProjectInfo content={content.project} locale={locale} />
+        <Contact content={content.contact} locale={locale} />
       </main>
-      <SiteFooter />
+      <SiteFooter content={content.footer} locale={locale} />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}

@@ -1,26 +1,25 @@
-import type { DeliveryStatus } from "@/data/siteContent";
-
 import styles from "./DevelopmentStatus.module.css";
 
 type StatusRowProps = {
   item: string;
-  status: DeliveryStatus;
+  status: string;
+  statusTone: "complete" | "progress" | "review" | "planned";
 };
 
-const statusSymbol: Record<DeliveryStatus, string> = {
-  완료: "✓",
-  "개발 중": "↻",
-  "검토·문의": "↗",
-  "후속 예정": "○",
+const statusSymbol = {
+  complete: "✓",
+  progress: "↻",
+  review: "↗",
+  planned: "○",
 };
 
-export function StatusRow({ item, status }: StatusRowProps) {
+export function StatusRow({ item, status, statusTone }: StatusRowProps) {
   return (
     <li>
       <span className={styles.item}>{item}</span>
-      <span className={styles.status} data-status={status}>
-        <i aria-hidden="true">{statusSymbol[status]}</i>
-        {status === "검토·문의" ? "제휴 검토 및 문의 단계" : status}
+      <span className={styles.status} data-status={statusTone}>
+        <i aria-hidden="true">{statusSymbol[statusTone]}</i>
+        {status}
       </span>
     </li>
   );

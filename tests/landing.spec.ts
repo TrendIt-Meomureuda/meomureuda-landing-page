@@ -51,6 +51,28 @@ test("키보드 포커스와 reduced-motion 환경을 지원한다", async ({ pa
   expect(scrollBehavior).toBe("auto");
 });
 
+test("언어 선택으로 자연스러운 영어 버전을 제공한다", async ({ page }) => {
+  await page.goto("/");
+
+  const languageNavigation = page.getByRole("navigation", { name: "언어 선택" });
+  await expect(languageNavigation.getByRole("link", { name: "EN" })).toHaveAttribute("href", "/en");
+  await languageNavigation.getByRole("link", { name: "EN" }).click();
+
+  await expect(page).toHaveURL(/\/en$/);
+  await expect(page.locator("html")).toHaveAttribute("lang", "en");
+  await expect(page.getByRole("heading", { level: 1, name: /Find your place in Jeju/ })).toBeVisible();
+  await expect(page.getByText("availability", { exact: false }).first()).toBeVisible();
+  await expect(page.getByText("No partnership should be considered confirmed.", { exact: false }).first()).toBeVisible();
+
+  const englishLanguageNavigation = page.getByRole("navigation", { name: "Choose language" });
+  await expect(englishLanguageNavigation.getByRole("link", { name: "한국어" })).toHaveAttribute("href", "/");
+
+  const hasHorizontalOverflow = await page.evaluate(
+    () => document.documentElement.scrollWidth > document.documentElement.clientWidth,
+  );
+  expect(hasHorizontalOverflow).toBe(false);
+});
+
 test("데스크톱과 모바일 전체 화면을 캡처한다", async ({ page }, testInfo) => {
   test.setTimeout(90_000);
   await page.goto("/");
@@ -75,6 +97,26 @@ test("데스크톱과 모바일 전체 화면을 캡처한다", async ({ page },
   ).toBe(0);
   await page.screenshot({
     path: `artifacts/screenshots/${testInfo.project.name}-landing.png`,
+    fullPage: true,
+    animations: "disabled",
+    caret: "hide",
+    scale: "css",
+  });
+
+  await page.goto("/en");
+  await page.evaluate(async () => {
+    for (const image of document.querySelectorAll<HTMLImageElement>("img")) {
+      image.loading = "eager";
+    }
+    const step = Math.max(500, Math.floor(window.innerHeight * 0.75));
+    for (let position = 0; position < document.body.scrollHeight; position += step) {
+      window.scrollTo(0, position);
+      await new Promise<void>((resolve) => setTimeout(resolve, 45));
+    }
+    window.scrollTo(0, 0);
+  });
+  await page.screenshot({
+    path: `artifacts/screenshots/${testInfo.project.name}-landing-en.png`,
     fullPage: true,
     animations: "disabled",
     caret: "hide",

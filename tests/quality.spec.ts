@@ -17,6 +17,33 @@ test("SEO 메타데이터와 공유 이미지를 제공한다", async ({ page, r
   expect(ogResponse.headers()["content-type"]).toContain("image/png");
 });
 
+test("영어 페이지에 맞는 SEO 언어와 대체 링크를 제공한다", async ({ page, request }) => {
+  await page.goto("/en");
+
+  await expect(page).toHaveTitle("Meomureuda | Personalized Jeju Long-Stay Recommendations");
+  await expect(page.locator("html")).toHaveAttribute("lang", "en");
+  await expect(page.locator('meta[name="description"]')).toHaveAttribute("content", /28–60-night stays/);
+  await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
+    "href",
+    "https://meomureuda-partners.vercel.app/en",
+  );
+  await expect(page.locator('link[hreflang="ko-KR"]')).toHaveAttribute(
+    "href",
+    "https://meomureuda-partners.vercel.app",
+  );
+  await expect(page.locator('link[hreflang="en-US"]')).toHaveAttribute(
+    "href",
+    "https://meomureuda-partners.vercel.app/en",
+  );
+  const englishOgUrl = await page.locator('meta[property="og:image"]').getAttribute("content");
+  expect(englishOgUrl).toMatch(/en\/opengraph-image/);
+  if (!englishOgUrl) throw new Error("English Open Graph image URL is missing");
+
+  const englishOgResponse = await request.get(new URL(englishOgUrl).pathname);
+  expect(englishOgResponse.ok()).toBe(true);
+  expect(englishOgResponse.headers()["content-type"]).toContain("image/png");
+});
+
 test("접근성 이름, 이미지 대체 텍스트와 제목 계층을 유지한다", async ({ page }) => {
   await page.goto("/");
 
