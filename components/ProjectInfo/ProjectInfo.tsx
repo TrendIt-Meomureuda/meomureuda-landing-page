@@ -15,7 +15,7 @@ export function ProjectInfo() {
     <section id="project" className={`section-shell deferred-section ${styles.section}`} aria-labelledby="project-title">
       <div className={`site-container ${styles.postcard}`}>
         <div className={styles.content}>
-          <p className="section-kicker">Project information</p>
+          <p className="section-kicker">프로젝트 정보</p>
           <h2 id="project-title" className="section-title">관광데이터로 시작하는<br />제주의 긴 머무름</h2>
           <dl>
             <div><dt>{projectFacts[0][0]}</dt><dd>{projectFacts[0][1]}</dd></div>
@@ -42,23 +42,25 @@ export function ProjectInfo() {
         </div>
 
         <div className={styles.visual}>
-          <div className={styles.screenCard}>
-            <Image
-              src="/figma/community.png"
-              alt="제주 생활 정보를 공유하는 머무르다 커뮤니티 화면"
-              width={390}
-              height={844}
-              sizes="(max-width: 768px) 48vw, 240px"
-            />
-          </div>
-          <div className={styles.screenCard}>
-            <Image
-              src="/figma/journal.png"
-              alt="여행의 날짜와 사진을 기록하는 머무르다 일지 화면"
-              width={390}
-              height={844}
-              sizes="(max-width: 768px) 48vw, 240px"
-            />
+          <div className={styles.screenStage}>
+            <div className={styles.screenCard}>
+              <Image
+                src="/figma/community.png"
+                alt="제주 생활 정보를 공유하는 머무르다 커뮤니티 화면"
+                width={390}
+                height={844}
+                sizes="(max-width: 768px) 44vw, 224px"
+              />
+            </div>
+            <div className={styles.screenCard}>
+              <Image
+                src="/figma/journal.png"
+                alt="여행의 날짜와 사진을 기록하는 머무르다 일지 화면"
+                width={390}
+                height={844}
+                sizes="(max-width: 768px) 44vw, 224px"
+              />
+            </div>
           </div>
           <span className={styles.stamp} aria-hidden="true">TRENDIT<br />JEJU 2026</span>
           <p>community · in development<br />journal · planned next</p>

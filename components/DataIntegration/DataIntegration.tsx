@@ -8,7 +8,7 @@ export function DataIntegration() {
       <div className="site-container">
         <div className={styles.heading}>
           <div>
-            <p className="section-kicker">Data partnership</p>
+            <p className="section-kicker">숙소 데이터 연동</p>
             <h2 id="data-title" className="section-title">흩어진 숙소 정보를,<br />머무는 조건에 맞게</h2>
           </div>
           <p className="section-copy">

@@ -3,14 +3,14 @@
   top: 0;
   z-index: 100;
   border-bottom: 1px solid var(--line);
-  background: rgba(247, 241, 229, 0.97);
+  background: rgba(255, 255, 255, 0.97);
 }
 
 .inner {
   display: flex;
-  min-height: 5.15rem;
+  min-height: 4.6rem;
   align-items: center;
-  gap: 1.5rem;
+  gap: 1.4rem;
 }
 
 .brand {
@@ -26,74 +26,61 @@
   flex: 1;
   align-items: center;
   justify-content: center;
-  gap: clamp(0.9rem, 2vw, 1.7rem);
+  gap: clamp(0.9rem, 1.7vw, 1.45rem);
 }
 
 .desktopNav a {
   position: relative;
-  color: var(--forest-deep);
-  font-size: 0.86rem;
-  font-weight: 700;
+  color: var(--muted);
+  font-size: 0.82rem;
+  font-weight: 600;
   text-decoration: none;
   white-space: nowrap;
 }
 
+.desktopNav a:hover { color: var(--tangerine); }
+
 .desktopNav a::after {
   position: absolute;
   right: 0;
-  bottom: -0.45rem;
+  bottom: -0.5rem;
   left: 0;
   height: 2px;
   background: var(--tangerine);
   content: "";
   transform: scaleX(0);
-  transform-origin: left;
   transition: transform 160ms ease;
 }
 
-.desktopNav a:hover::after {
-  transform: scaleX(1);
-}
+.desktopNav a:hover::after { transform: scaleX(1); }
 
 .figmaLink {
-  min-height: 2.7rem;
-  padding: 0.65rem 1rem;
-  font-size: 0.82rem;
+  min-height: 2.5rem;
+  padding: 0.55rem 0.95rem;
+  font-size: 0.74rem;
   white-space: nowrap;
 }
 
-.menuButton,
-.mobileNav {
-  display: none;
-}
+.menuButton, .mobileNav { display: none; }
 
 @media (max-width: 70rem) {
-  .inner {
-    min-height: 4.75rem;
-  }
-
-  .desktopNav,
-  .figmaLink {
-    display: none;
-  }
-
-  .brand {
-    margin-right: auto;
-  }
+  .inner { min-height: 4.4rem; }
+  .desktopNav, .figmaLink { display: none; }
+  .brand { margin-right: auto; }
 
   .menuButton {
     display: inline-flex;
-    min-width: 4.8rem;
-    min-height: 2.75rem;
+    min-width: 4.65rem;
+    min-height: 2.65rem;
     align-items: center;
     justify-content: center;
-    gap: 0.55rem;
-    border: 1px solid rgba(41, 72, 61, 0.4);
+    gap: 0.5rem;
+    border: 0;
     border-radius: 999px;
-    background: var(--white);
-    color: var(--forest-deep);
-    font-size: 0.82rem;
-    font-weight: 800;
+    background: var(--orange-pale);
+    color: #af8760;
+    font-size: 0.78rem;
+    font-weight: 700;
     cursor: pointer;
   }
 
@@ -104,8 +91,7 @@
     background: currentColor;
   }
 
-  .menuIcon::before,
-  .menuIcon::after {
+  .menuIcon::before, .menuIcon::after {
     position: absolute;
     left: 0;
     width: 1rem;
@@ -114,47 +100,40 @@
     content: "";
   }
 
-  .menuIcon::before {
-    top: -0.3rem;
-  }
-
-  .menuIcon::after {
-    top: 0.3rem;
-  }
+  .menuIcon::before { top: -0.3rem; }
+  .menuIcon::after { top: 0.3rem; }
 
   .mobileNav {
     display: block;
     border-top: 1px solid var(--line);
-    background: var(--paper);
-    box-shadow: 0 22px 34px rgba(32, 48, 42, 0.12);
+    background: var(--white);
+    box-shadow: 0 16px 30px rgba(37, 39, 41, 0.08);
   }
 
-  .mobileNav > div {
-    display: grid;
-    padding-block: 0.65rem 1.2rem;
-  }
+  .mobileNav > div { display: grid; padding-block: 0.6rem 1.1rem; }
 
   .mobileNav a {
     padding: 0.78rem 0;
     border-bottom: 1px solid var(--line);
-    color: var(--forest-deep);
-    font-weight: 750;
+    color: var(--basalt);
+    font-weight: 650;
     text-decoration: none;
   }
 
   .mobileNav .mobileFigma {
-    margin-top: 0.65rem;
+    margin-top: 0.7rem;
     padding: 0.9rem 1rem;
-    border: 1px solid var(--forest);
-    border-radius: 0.9rem 0.9rem 0.9rem 0.25rem;
-    background: var(--white);
+    border: 0;
+    border-radius: 12px;
+    background: var(--orange-pale);
+    color: #af8760;
   }
 
   .mobileFigma small {
     display: block;
     margin-top: 0.2rem;
-    color: var(--muted);
-    font-size: 0.72rem;
+    color: #b6906b;
+    font-size: 0.7rem;
     font-weight: 500;
   }
 }

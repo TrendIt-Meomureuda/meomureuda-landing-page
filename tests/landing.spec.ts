@@ -55,6 +55,9 @@ test("데스크톱과 모바일 전체 화면을 캡처한다", async ({ page },
   test.setTimeout(90_000);
   await page.goto("/");
   await page.evaluate(async () => {
+    for (const image of document.querySelectorAll<HTMLImageElement>("img")) {
+      image.loading = "eager";
+    }
     const step = Math.max(500, Math.floor(window.innerHeight * 0.75));
     for (let position = 0; position < document.body.scrollHeight; position += step) {
       window.scrollTo(0, position);
@@ -62,6 +65,14 @@ test("데스크톱과 모바일 전체 화면을 캡처한다", async ({ page },
     }
     window.scrollTo(0, 0);
   });
+  await expect.poll(
+    () => page.evaluate(
+      () => Array.from(document.querySelectorAll<HTMLImageElement>("img")).filter(
+        (image) => !image.complete || image.naturalWidth === 0,
+      ).length,
+    ),
+    { timeout: 10_000 },
+  ).toBe(0);
   await page.screenshot({
     path: `artifacts/screenshots/${testInfo.project.name}-landing.png`,
     fullPage: true,

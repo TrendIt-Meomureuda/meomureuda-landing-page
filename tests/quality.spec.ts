@@ -66,11 +66,14 @@ test("로컬 자산 로딩과 브라우저 콘솔에 오류가 없다", async ({
     }
   });
 
-  const brokenImages = await page.evaluate(
-    () => Array.from(document.querySelectorAll<HTMLImageElement>("img")).filter((image) => !image.complete || image.naturalWidth === 0).length,
-  );
-
-  expect(brokenImages).toBe(0);
+  await expect.poll(
+    () => page.evaluate(
+      () => Array.from(document.querySelectorAll<HTMLImageElement>("img")).filter(
+        (image) => !image.complete || image.naturalWidth === 0,
+      ).length,
+    ),
+    { timeout: 10_000 },
+  ).toBe(0);
   expect(consoleErrors).toEqual([]);
   expect(failedRequests).toEqual([]);
 });

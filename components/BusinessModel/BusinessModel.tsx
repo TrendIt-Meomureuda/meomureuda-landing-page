@@ -8,7 +8,7 @@ export function BusinessModel() {
       <div className="site-container">
         <div className={styles.heading}>
           <div>
-            <p className="section-kicker">Operating model</p>
+            <p className="section-kicker">초기 운영 모델</p>
             <h2 id="business-title" className="section-title">예약을 소유하기보다,<br />좋은 선택으로 연결합니다.</h2>
           </div>
           <p className="section-copy">

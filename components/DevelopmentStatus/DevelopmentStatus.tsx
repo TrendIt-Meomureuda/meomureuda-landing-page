@@ -9,7 +9,7 @@ export function DevelopmentStatus() {
     <section id="status" className={`section-shell deferred-section ${styles.section}`} aria-labelledby="status-title">
       <div className={`site-container ${styles.layout}`}>
         <div>
-          <p className="section-kicker">Build status</p>
+          <p className="section-kicker">개발 현황</p>
           <h2 id="status-title" className="section-title">완료된 것과<br />앞으로 만들 것을<br />구분합니다.</h2>
           <p className="section-copy">
             프로토타입의 화면 수가 개발 완료 범위를 의미하지 않도록, 현재 상태를 기능 단위로 공개합니다.

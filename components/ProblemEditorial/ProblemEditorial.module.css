@@ -1,164 +1,177 @@
-.section {
-  background: var(--white);
-}
+.section { background: var(--gray-50); }
 
 .layout {
   display: grid;
-  grid-template-columns: minmax(0, 0.86fr) minmax(28rem, 1.14fr);
+  grid-template-columns: minmax(0, 0.85fr) minmax(30rem, 1.15fr);
   align-items: start;
-  gap: clamp(3rem, 8vw, 8rem);
+  gap: clamp(3rem, 7vw, 7rem);
 }
 
-.intro {
-  position: sticky;
-  top: 8rem;
-}
-
-.photoNote {
-  max-width: 28rem;
-  margin: 3.25rem 0 0;
-  transform: rotate(-1.5deg);
-}
+.intro { position: sticky; top: 7rem; }
+.photoNote { max-width: 29rem; margin: 2.7rem 0 0; }
 
 .photoCrop {
   position: relative;
   min-height: 17rem;
   overflow: hidden;
-  border-radius: 0.4rem 5rem 0.4rem 0.4rem;
+  border-radius: 18px 7rem 18px 18px;
+  background: var(--gray-100);
 }
 
-.photoCrop img {
-  object-fit: cover;
-}
+.photoCrop img { object-fit: cover; }
 
 .photoNote figcaption {
-  margin-top: 0.85rem;
-  padding-left: 0.75rem;
-  border-left: 3px solid var(--tangerine);
-  color: var(--forest);
-  font-family: var(--font-display), serif;
-  font-size: 0.92rem;
+  display: flex;
+  align-items: baseline;
+  gap: 0.55rem;
+  margin-top: 0.75rem;
+  color: var(--muted);
+  font-size: 0.82rem;
+  line-height: 1.6;
+}
+
+.photoNote figcaption::before {
+  width: 0.45rem;
+  height: 0.45rem;
+  flex: 0 0 auto;
+  border-radius: 50%;
+  background: var(--green);
+  content: "";
 }
 
 .problems {
+  position: relative;
   display: grid;
-  gap: 1.25rem;
-  padding-top: 4rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem clamp(1.5rem, 3vw, 2.75rem);
+  padding: 3.5rem 1rem 2.5rem;
+  isolation: isolate;
+}
+
+.routeGraphic {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  pointer-events: none;
+}
+
+.routeMain,
+.routeEcho {
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.routeMain {
+  stroke: rgba(241, 136, 34, 0.42);
+  stroke-width: 3;
+  stroke-dasharray: 4 13;
+}
+
+.routeEcho {
+  stroke: rgba(128, 165, 58, 0.32);
+  stroke-width: 1.5;
+}
+
+.routeSprout {
+  position: absolute;
+  top: 49%;
+  left: 50%;
+  z-index: 2;
+  width: 2.6rem;
+  height: auto;
+  padding: 0.45rem;
+  border-radius: 50%;
+  background: var(--gray-50);
+  transform: translate(-50%, -50%) rotate(-8deg);
 }
 
 .problem {
   position: relative;
+  z-index: 1;
   display: grid;
-  min-height: 11.5rem;
-  grid-template-columns: 4rem 1fr;
+  min-height: 14.5rem;
+  grid-template-columns: 3rem 1fr;
   align-items: start;
-  gap: 1.3rem;
-  padding: clamp(1.6rem, 4vw, 2.5rem);
-  border: 1px solid rgba(48, 51, 48, 0.13);
+  gap: 0.85rem;
+  padding: 1.5rem 1rem;
+  background: transparent;
+  isolation: isolate;
 }
 
-.problem:nth-child(even) {
-  margin-left: clamp(0rem, 5vw, 4rem);
+.problem::before {
+  position: absolute;
+  inset: 0 -0.25rem 0.2rem;
+  z-index: -1;
+  border-radius: 48% 52% 46% 54% / 54% 44% 56% 46%;
+  background: rgba(255, 255, 255, 0.7);
+  content: "";
 }
 
-.problem:nth-child(odd) {
-  margin-right: clamp(0rem, 4vw, 3rem);
-}
+.paper { margin-top: 2.75rem; }
+.sea { margin-top: -1.5rem; }
+.forest { margin-top: 1.5rem; }
 
-.sand {
-  border-radius: 0.3rem 4.5rem 0.3rem 0.3rem;
-  background: var(--paper-deep);
-}
-
-.paper {
-  border-radius: 3.5rem 0.3rem 0.3rem 0.3rem;
-  background: var(--paper);
-  transform: rotate(0.8deg);
-}
-
-.sea {
-  border-radius: 0.3rem;
-  background: var(--jeju-sea-pale);
-  transform: rotate(-0.6deg);
-}
-
-.forest {
-  border-color: var(--forest);
-  border-radius: 0.3rem 0.3rem 4rem 0.3rem;
-  background: var(--forest);
-  color: var(--white);
-}
+.sand::before { background: rgba(255, 255, 255, 0.78); }
+.paper::before { border-radius: 54% 46% 51% 49% / 46% 56% 44% 54%; background: rgba(241, 245, 232, 0.68); }
+.sea::before { border-radius: 45% 55% 55% 45% / 55% 48% 52% 45%; background: rgba(234, 244, 246, 0.72); }
+.forest::before { border-radius: 52% 48% 45% 55% / 47% 55% 45% 53%; background: rgba(255, 243, 231, 0.78); }
 
 .number {
-  color: var(--tangerine-dark);
-  font-family: var(--font-display), serif;
-  font-size: 2.1rem;
+  display: grid;
+  width: 2.65rem;
+  height: 2.65rem;
+  place-items: center;
+  border: 1px solid rgba(241, 136, 34, 0.16);
+  border-radius: 999px;
+  background: var(--orange-pale);
+  color: var(--tangerine);
+  font-size: 0.72rem;
   font-weight: 700;
-  line-height: 1;
+  box-shadow: 0 8px 20px rgba(69, 56, 43, 0.06);
 }
 
-.forest .number {
-  color: #ffb56e;
-}
+.paper .number { border-color: rgba(128, 165, 58, 0.18); background: #f1f5e8; color: #6f9230; }
+.sea .number { border-color: rgba(111, 157, 167, 0.2); background: #eaf4f6; color: #578c97; }
+.forest .number { border-color: rgba(241, 136, 34, 0.26); background: #fff0e0; color: var(--tangerine); }
 
 .problem h3 {
-  margin: 0;
+  margin: 0.45rem 0 0;
   color: var(--forest-deep);
-  font-family: var(--font-display), serif;
-  font-size: clamp(1.35rem, 2vw, 1.8rem);
+  font-size: clamp(1.15rem, 1.8vw, 1.45rem);
+  font-weight: 700;
+  letter-spacing: -0.01em;
   line-height: 1.35;
   word-break: keep-all;
 }
 
-.forest h3 {
-  color: var(--white);
-}
-
 .problem p {
-  margin: 0.65rem 0 0;
-  color: #5b615c;
-  line-height: 1.7;
+  margin: 0.6rem 0 0;
+  color: #4f555d;
+  font-size: clamp(0.92rem, 1.05vw, 0.98rem);
+  font-weight: 500;
+  line-height: 1.75;
   word-break: keep-all;
 }
 
-.forest p {
-  color: rgba(255, 253, 248, 0.78);
-}
-
 @media (max-width: 70rem) {
-  .layout {
-    grid-template-columns: 1fr;
-  }
-
-  .intro {
-    position: static;
-  }
-
-  .photoNote {
-    max-width: 38rem;
-  }
-
-  .problems {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    padding-top: 0;
-  }
-
-  .problem:nth-child(n) {
-    margin: 0;
-  }
+  .layout { grid-template-columns: 1fr; }
+  .intro { position: static; }
+  .photoNote { max-width: 40rem; }
+  .problems { max-width: 46rem; margin-inline: auto; }
 }
 
 @media (max-width: 47.99rem) {
-  .problems {
-    grid-template-columns: 1fr;
-  }
-
-  .problem {
-    min-height: auto;
-    grid-template-columns: 3.2rem 1fr;
-  }
-
-  .photoCrop {
-    min-height: 13.5rem;
-  }
+  .photoCrop { min-height: 13.5rem; border-radius: 14px 4.5rem 14px 14px; }
+  .problems { grid-template-columns: 1fr; gap: 0; padding: 3rem 0.5rem 1rem 2rem; }
+  .routeGraphic { inset: 0 auto 0 0; width: 3.5rem; }
+  .routeMain { stroke-width: 4; }
+  .routeEcho { display: none; }
+  .routeSprout { top: 50%; left: 0.5rem; width: 2.25rem; }
+  .problem { min-height: auto; padding: 1.25rem 0.75rem 2.75rem; }
+  .problem:nth-of-type(n) { margin-top: 0; }
+  .problem::before { inset: 0.25rem -0.35rem 1rem -0.75rem; }
 }

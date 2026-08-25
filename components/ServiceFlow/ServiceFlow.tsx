@@ -9,7 +9,7 @@ export function ServiceFlow() {
       <div className="site-container">
         <div className={styles.heading}>
           <div>
-            <p className="section-kicker">How it works</p>
+            <p className="section-kicker">서비스 이용 흐름</p>
             <h2 id="flow-title" className="section-title">성향에서 지역으로,<br />지역에서 머무름으로</h2>
           </div>
           <p className="section-copy">

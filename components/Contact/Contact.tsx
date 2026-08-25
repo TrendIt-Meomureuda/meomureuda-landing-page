@@ -20,7 +20,7 @@ export function Contact() {
         </div>
 
         <div className={styles.copy}>
-          <p className="section-kicker">Partnership contact</p>
+          <p className="section-kicker">제휴 문의</p>
           <h2 id="contact-title">제주의 긴 머무름을<br />함께 연결해 주세요.</h2>
           <p>
             숙소 기본정보, 가격, 객실 재고와 예약 링크 연동 가능성을 논의하고 싶습니다. 검토 가능한 API 범위와 제휴 절차를 알려주시면 서비스 구조와 필요한 데이터를 상세히 공유드리겠습니다.
