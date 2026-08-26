@@ -1,6 +1,6 @@
 import { ImageResponse } from "next/og";
 
-export const alt = "머무르다, 제주 28–60박 성향 기반 장기 체류 추천";
+export const alt = "머무르다, 제주 7–28박 성향 기반 장기 체류 추천";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -53,7 +53,7 @@ export default function OpenGraphImage() {
           letterSpacing: -8,
         }}
       >
-        28—60
+        7—28
       </div>
       <div
         style={{

@@ -1,22 +1,15 @@
 import Image from "next/image";
 
-import type { Locale, SiteContent } from "@/data/localizedContent";
-import {
-  CONTACT_EMAIL_HREF_EN,
-  CONTACT_EMAIL_HREF_KO,
-  FIGMA_PROTOTYPE_URL,
-} from "@/data/siteContent";
+import type { SiteContent } from "@/data/localizedContent";
+import { FIGMA_PROTOTYPE_URL } from "@/data/siteContent";
 
 import styles from "./Hero.module.css";
 
 type HeroProps = {
   content: SiteContent["hero"];
-  locale: Locale;
 };
 
-export function Hero({ content, locale }: HeroProps) {
-  const contactHref = locale === "ko" ? CONTACT_EMAIL_HREF_KO : CONTACT_EMAIL_HREF_EN;
-
+export function Hero({ content }: HeroProps) {
   return (
     <section id="top" className={styles.hero} aria-labelledby="hero-title">
       <div className={`site-container ${styles.layout}`}>
@@ -32,9 +25,7 @@ export function Hero({ content, locale }: HeroProps) {
           </h1>
           <p className={styles.lead}>{content.lead}</p>
           <div className={styles.actions}>
-            <a className="button-primary" href={contactHref}>
-              {content.contactCta}
-            </a>
+            <p className="external-note">{content.contactHint}</p>
             <div>
               <a
                 className="button-secondary"
@@ -45,7 +36,6 @@ export function Hero({ content, locale }: HeroProps) {
               >
                 {content.figmaLabel}
               </a>
-              <small className="external-note">{content.figmaNote}</small>
             </div>
           </div>
         </div>
@@ -77,9 +67,9 @@ export function Hero({ content, locale }: HeroProps) {
           <div className={styles.stayRange} aria-label={content.rangeAria}>
             <span className={styles.rangeTitle}>{content.rangeTitle}</span>
             <div className={styles.rangeNumbers}>
-              <strong>28</strong>
+              <strong>7</strong>
               <span aria-hidden="true">—</span>
-              <strong>60</strong>
+              <strong>28</strong>
             </div>
           </div>
           <div className={styles.photoFrame}>

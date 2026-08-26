@@ -1,6 +1,6 @@
-import { formatCompactDate, formatDeadline } from "@/data/dateFormatting";
+import { formatCompactDate } from "@/data/dateFormatting";
 import type { Locale, SiteContent } from "@/data/localizedContent";
-import { PILOT_TARGET_DATE, SUBMISSION_DATE } from "@/data/siteContent";
+import { PILOT_TARGET_DATE } from "@/data/siteContent";
 
 import { StatusRow } from "./StatusRow";
 import styles from "./DevelopmentStatus.module.css";
@@ -22,10 +22,6 @@ export function DevelopmentStatus({ content, locale }: DevelopmentStatusProps) {
             <div>
               <span>{content.pilotLabel}</span>
               <time dateTime={PILOT_TARGET_DATE}>{formatCompactDate(PILOT_TARGET_DATE, locale)}</time>
-            </div>
-            <div>
-              <span>{content.submissionLabel}</span>
-              <time dateTime={SUBMISSION_DATE}>{formatDeadline(SUBMISSION_DATE, locale)}</time>
             </div>
           </div>
         </div>

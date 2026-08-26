@@ -5,7 +5,7 @@ test("SEO 메타데이터와 공유 이미지를 제공한다", async ({ page, r
 
   await expect(page).toHaveTitle("머무르다 | 제주 한달살이 성향 기반 권역·숙소 추천");
   await expect(page.locator("html")).toHaveAttribute("lang", "ko");
-  await expect(page.locator('meta[name="description"]')).toHaveAttribute("content", /28–60박/);
+  await expect(page.locator('meta[name="description"]')).toHaveAttribute("content", /7–28박/);
   await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
     "href",
     "https://meomureuda-partners.vercel.app",
@@ -22,7 +22,7 @@ test("영어 페이지에 맞는 SEO 언어와 대체 링크를 제공한다", a
 
   await expect(page).toHaveTitle("Meomureuda | Personalized Jeju Long-Stay Recommendations");
   await expect(page.locator("html")).toHaveAttribute("lang", "en");
-  await expect(page.locator('meta[name="description"]')).toHaveAttribute("content", /28–60-night stays/);
+  await expect(page.locator('meta[name="description"]')).toHaveAttribute("content", /7–28-night stays/);
   await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
     "href",
     "https://meomureuda-partners.vercel.app/en",

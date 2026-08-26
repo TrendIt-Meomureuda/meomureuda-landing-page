@@ -38,7 +38,7 @@ export function LocalizedLandingPage({ locale }: { locale: Locale }) {
       <a className="skip-link" href="#main-content">{content.skipLink}</a>
       <SiteHeader content={content.header} language={content.language} locale={locale} />
       <main id="main-content">
-        <Hero content={content.hero} locale={locale} />
+        <Hero content={content.hero} />
         <ProblemEditorial content={content.problem} />
         <ServiceFlow content={content.flow} />
         <DataIntegration content={content.data} />

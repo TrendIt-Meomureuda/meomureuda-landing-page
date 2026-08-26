@@ -7,11 +7,8 @@ test("제휴 심사용 핵심 정보와 연락처를 제공한다", async ({ pag
 
   await expect(page.getByRole("heading", { level: 1, name: /나에게 맞는 제주에서/ })).toBeVisible();
   await expect(page.getByText("API 연동", { exact: false }).first()).toBeVisible();
-  await expect(page.getByText("제휴가 확정되었음을 의미하지 않습니다.", { exact: false })).toBeVisible();
-  await expect(page.getByRole("link", { name: "제휴 및 데이터 연동 문의하기" })).toHaveAttribute(
-    "href",
-    /^mailto:skyupdown543@naver\.com/,
-  );
+  await expect(page.getByText("현재 숙박 플랫폼 및 제주 숙소 공급자와 데이터 연동 가능성을 협의하는 과정 중에 있습니다.", { exact: true })).toBeVisible();
+  await expect(page.getByText("제휴 및 데이터 연동 문의는 아래 연락처로 문의해 주세요.", { exact: true })).toBeVisible();
   await expect(page.getByRole("link", { name: "+82 10-2478-8770" }).first()).toHaveAttribute(
     "href",
     "tel:+821024788770",
@@ -25,7 +22,7 @@ test("Figma 링크를 실제 서비스가 아닌 별도 프로토타입으로 �
   await expect(figmaLinks.first()).toHaveAttribute("href", FIGMA_PROTOTYPE_URL);
   await expect(figmaLinks.first()).toHaveAttribute("target", "_blank");
   await expect(page.locator("header").getByRole("link", { name: /Figma/ })).toHaveCount(0);
-  await expect(page.getByText("실제 서비스가 아닌 디자인 검토용", { exact: false }).first()).toBeVisible();
+  await expect(page.getByText("실제 서비스가 아닌 디자인 검토용", { exact: false })).toHaveCount(0);
   await expect(page.getByRole("link", { name: /서비스 미리보기/ })).toHaveCount(0);
 });
 
@@ -40,6 +37,22 @@ test("내비게이션 대상과 모바일 너비에서 레이아웃이 유지된
     () => document.documentElement.scrollWidth > document.documentElement.clientWidth,
   );
   expect(hasHorizontalOverflow).toBe(false);
+});
+
+test("수정된 체류 범위와 제휴 안내 문구를 제공한다", async ({ page }) => {
+  await page.goto("/");
+
+  await expect(page.getByText("7–28박", { exact: false }).first()).toBeVisible();
+  await expect(page.getByText("진단을 통한 권역 및 숙소 추천을 중심으로", { exact: false })).toBeVisible();
+  await expect(page.getByRole("img", { name: /AI 스크랩북으로 제주 여행의 순간/ })).toHaveAttribute(
+    "src",
+    /scrapbook\.png/,
+  );
+  await expect(page.getByText("Agoda", { exact: false })).toHaveCount(0);
+  await expect(page.getByText("Booking.com", { exact: false })).toHaveCount(0);
+  await expect(page.getByText("공모전 제출 예정", { exact: true })).toHaveCount(0);
+  await expect(page.getByText("초기 운영 원칙", { exact: true })).toHaveCount(0);
+  await expect(page.locator("#project dl > div")).toHaveCount(5);
 });
 
 test("키보드 포커스와 reduced-motion 환경을 지원한다", async ({ page }) => {

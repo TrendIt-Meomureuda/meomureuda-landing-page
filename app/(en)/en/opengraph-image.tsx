@@ -1,6 +1,6 @@
 import { ImageResponse } from "next/og";
 
-export const alt = "Meomureuda, personalized Jeju recommendations for stays of 28 to 60 nights";
+export const alt = "Meomureuda, personalized Jeju recommendations for stays of 7 to 28 nights";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -53,7 +53,7 @@ export default function EnglishOpenGraphImage() {
           letterSpacing: -8,
         }}
       >
-        28—60
+        7—28
       </div>
       <div
         style={{

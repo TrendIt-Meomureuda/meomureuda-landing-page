@@ -10,4 +10,3 @@ export const CONTACT_EMAIL_HREF_EN =
   "mailto:skyupdown543@naver.com?subject=%5BMeomureuda%5D%20Property%20data%20and%20API%20partnership%20inquiry";
 export const CONTACT_EMAIL_HREF = CONTACT_EMAIL_HREF_KO;
 export const PILOT_TARGET_DATE = "2026-09-05T00:00:00+09:00";
-export const SUBMISSION_DATE = "2026-09-21T16:00:00+09:00";

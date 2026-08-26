@@ -1,11 +1,10 @@
 import Image from "next/image";
 
-import { formatDate, formatDeadline } from "@/data/dateFormatting";
+import { formatDate } from "@/data/dateFormatting";
 import type { Locale, SiteContent } from "@/data/localizedContent";
 import {
   FIGMA_PROTOTYPE_URL,
   PILOT_TARGET_DATE,
-  SUBMISSION_DATE,
 } from "@/data/siteContent";
 
 import styles from "./ProjectInfo.module.css";
@@ -23,14 +22,10 @@ export function ProjectInfo({ content, locale }: ProjectInfoProps) {
           <p className="section-kicker">{content.kicker}</p>
           <h2 id="project-title" className="section-title">{content.title[0]}<br />{content.title[1]}</h2>
           <dl>
-            <div><dt>{content.facts[0][0]}</dt><dd>{content.facts[0][1]}</dd></div>
-            <div><dt>{content.facts[1][0]}</dt><dd>{content.facts[1][1]}</dd></div>
-            <div><dt>{content.facts[2][0]}</dt><dd>{content.facts[2][1]}</dd></div>
-            <div><dt>{content.facts[3][0]}</dt><dd>{content.facts[3][1]}</dd></div>
-            <div><dt>{content.facts[4][0]}</dt><dd>{content.facts[4][1]}</dd></div>
-            <div><dt>{content.facts[5][0]}</dt><dd>{content.facts[5][1]}</dd></div>
+            {content.facts.map(([label, value]) => (
+              <div key={label}><dt>{label}</dt><dd>{value}</dd></div>
+            ))}
             <div><dt>{content.pilotLabel}</dt><dd><time dateTime={PILOT_TARGET_DATE}>{formatDate(PILOT_TARGET_DATE, locale)}</time></dd></div>
-            <div><dt>{content.submissionLabel}</dt><dd><time dateTime={SUBMISSION_DATE}>{formatDeadline(SUBMISSION_DATE, locale)}</time></dd></div>
           </dl>
           <div className={styles.figmaAction}>
             <a
@@ -42,7 +37,6 @@ export function ProjectInfo({ content, locale }: ProjectInfoProps) {
             >
               {content.figmaLabel}
             </a>
-            <small className="external-note">{content.figmaNote}</small>
           </div>
         </div>
 

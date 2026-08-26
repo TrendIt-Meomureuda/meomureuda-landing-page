@@ -30,11 +30,6 @@ export function BusinessModel({ content }: { content: SiteContent["business"] })
             <h3>{content.models[2].title}</h3>
             <p>{content.models[2].body}</p>
           </article>
-          <article>
-            <span>{content.models[3].label}</span>
-            <h3>{content.models[3].title}</h3>
-            <p>{content.models[3].body}</p>
-          </article>
         </div>
       </div>
     </section>
